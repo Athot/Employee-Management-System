@@ -34,7 +34,7 @@ export default function EmployeeAttendance() {
       setAttendanceData(data);
     }
   };
-  console.log(attendanceData);
+  // console.log(attendanceData);
 
   // function to call checkIn
   const handleCheckIn = async () => {

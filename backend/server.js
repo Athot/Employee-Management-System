@@ -24,9 +24,6 @@ app.use(cors());
 // aclspp.options("/*", cors());
 app.use(express.json());
 
-// app.options("*", cors());
-console.log("MONGO_URI:", process.env.MONGO_URI);
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
 // routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/employee", require("./routes/employeeRoutes"));

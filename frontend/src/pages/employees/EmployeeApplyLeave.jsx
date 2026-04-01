@@ -50,6 +50,7 @@ export default function EmployeeApplyLeave() {
       alert("You have already applied leave for today");
     }
     if (data) {
+      setIsApply(true);
       alert("Successfully submitted");
       setForm({
         userID: userID,
@@ -65,11 +66,7 @@ export default function EmployeeApplyLeave() {
     <Layout>
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
         <h1 className="text-xl font-bold mb-4">
-          {isApply ? (
-            <h2 className="text-red-20">You have applied leave for today</h2>
-          ) : (
-            "Apply Leave"
-          )}
+          {isApply ? "You have applied leave for today" : "Apply Leave"}
         </h1>
 
         {/* Employee */}
@@ -89,12 +86,14 @@ export default function EmployeeApplyLeave() {
         {/* Leave Type */}
         <select
           name="leaveType"
+          value={form.leaveType}
           onChange={handleChange}
           className="w-full mb-3 p-2 border rounded"
         >
-          <option>SICK</option>
-          <option>CASUAL</option>
-          <option>ANNUAL</option>
+          <option value="">Select Leave Type</option>
+          <option value="SICK">SICK</option>
+          <option value="CASUAL">CASUAL</option>
+          <option value="ANNUAL">ANNUAL</option>
         </select>
 
         {/* Dates */}

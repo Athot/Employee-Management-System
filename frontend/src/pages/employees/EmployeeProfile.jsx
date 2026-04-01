@@ -7,7 +7,7 @@ const EmployeeProfile = () => {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const { profile, loading } = useSelector((state) => state.employee);
-  console.log(profile);
+
   useEffect(() => {
     dispatch(getMyProfile(token));
   }, [dispatch, token]);

@@ -20,7 +20,8 @@ exports.hasApplyLeave = async (req, res) => {
       toDate: { $gte: today },
     });
     // console.log(existingLeave);
-    if (existingLeave) {
+    if (existingLeave.length != 0) {
+      console.log(existingLeave);
       return res.status(200).json({ msg: 1 });
     }
   } catch (error) {

@@ -62,9 +62,9 @@ exports.checkOut = async (req, res) => {
     // 🔥 DO NOT RESET STATUS HERE
     let finalStatus = attendance.status; // keep check-in status
 
-    if (totalHours < 4) {
-      finalStatus = "HALFDAY";
-    }
+    // if (totalHours < 4) {
+    //   finalStatus = "HALFDAY";
+    // }
 
     attendance.checkOut = checkOutTime;
     attendance.totalHours = totalHours;

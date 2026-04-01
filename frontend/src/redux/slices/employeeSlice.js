@@ -24,7 +24,6 @@ export const fetchEmployees = createAsyncThunk(
 export const getMyProfile = createAsyncThunk(
   "employees/getMyProfile",
   async (token, thunkApi) => {
-    debugger;
     try {
       const res = await axios.get(
         `${EMPLOYEE_URL}/get-profile`,
