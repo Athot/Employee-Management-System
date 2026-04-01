@@ -6,25 +6,23 @@ const connectDB = require("./config/db.js");
 dotenv.config();
 connectDB();
 const app = express();
-app.use(express.json());
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://employee-management-system-six-mu.vercel.app",
-];
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "https://employee-management-system-six-mu.vercel.app",
+// ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: [
+      "http://localhost:5173",
+      "https://employee-management-system-six-mu.vercel.app",
+    ],
+    credentials: true,
   }),
 );
+app.use(express.json());
+
+// app.options("*", cors());
 console.log("MONGO_URI:", process.env.MONGO_URI);
 console.log("JWT_SECRET:", process.env.JWT_SECRET);
 // routes
