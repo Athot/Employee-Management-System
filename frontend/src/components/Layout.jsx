@@ -22,8 +22,8 @@ const Layout = ({ children }) => {
           {[
             { name: "Home", path: "/employee-dashboard" },
             { name: "Attendance", path: "/employee-attendance" },
-            { name: "Leaves", path: "/employee-leaves" },
-            { name: "Apply Leaves", path: "/employee-apply-leaves" },
+            { name: "Leave", path: "/employee-leaves" },
+            { name: "Apply Leave", path: "/employee-apply-leaves" },
             { name: "Salary", path: "/employee-salary" },
             { name: "Profile", path: "/employee-profile" },
           ].map((item) => (
