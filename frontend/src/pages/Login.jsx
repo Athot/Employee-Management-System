@@ -15,6 +15,10 @@ export default function Login() {
   const navigate = useNavigate();
   //is sign in
   const signIn = async () => {
+    if (email === "" || password === "") {
+      alert("Fill up all the details");
+      return;
+    }
     if (isSignIn) {
       const data = await login(email, password);
       if (data) {
@@ -41,6 +45,7 @@ export default function Login() {
 
   // register
   const registerUser = async () => {
+    // if(userName == )
     try {
       if (password != confirmPassword) {
         alert("Password should be match");

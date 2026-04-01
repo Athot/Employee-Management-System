@@ -12,7 +12,7 @@ export default function CreateSalary() {
   const dispatch = useDispatch();
   // get all the employee
   const { employees, loading } = useSelector((state) => state.employee);
-  console.log(employees);
+  // console.log(employees);
   // call from redux
 
   useEffect(() => {
