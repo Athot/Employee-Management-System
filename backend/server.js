@@ -7,8 +7,23 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://employee-management-system-six-mu.vercel.app",
+];
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  }),
+);
 // routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/employee", require("./routes/employeeRoutes"));
@@ -18,4 +33,3 @@ app.use("/api/attendance", require("./routes/attendanceRoutes"));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
-// CCVpbUTz30UxxUt0
