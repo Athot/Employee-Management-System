@@ -11,15 +11,17 @@ const app = express();
 //   "https://employee-management-system-six-mu.vercel.app",
 // ];
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://employee-management-system-six-mu.vercel.app",
-    ],
-    credentials: true,
-  }),
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:5173",
+//       "https://employee-management-system-six-mu.vercel.app",
+//     ],
+//     credentials: true,
+//   }),
+// );
+app.use(cors());
+// aclspp.options("/*", cors());
 app.use(express.json());
 
 // app.options("*", cors());
