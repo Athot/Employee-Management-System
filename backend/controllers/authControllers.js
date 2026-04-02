@@ -26,19 +26,28 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  console.log("BODY:", req.body);
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) {
-    return res.status(200).json({ msg: 1 });
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    // ❌ User not found
+    if (!user) {
+      return res.status(200).json({ msg: 1 });
+    }
+
+    // ❌ Password not matched
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(200).json({ msg: 2 });
+    }
+
+    // ✅ Success
+    return res.json({
+      token: generateToken(user),
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: error.message });
   }
-  if (!user) return res.status(400).json({ msg: "Invalid credentials" });
-  const isMatch = await bcrypt.compare(password, user.password);
-
-  if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
-
-  res.json({
-    token: generateToken(user),
-    user,
-  });
 };

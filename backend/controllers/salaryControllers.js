@@ -74,7 +74,20 @@ exports.generateSalarySlip = async (req, res) => {
 exports.getSalary = async (req, res) => {
   try {
     // console.log("hit");
+    const userID = req.params.id;
+    // console.log(userID);
+    const salaries = await Salary.find({ userID: userID });
+    console.log(salaries);
+    res.json(salaries);
+  } catch (error) {
+    return res.status(500).json({ msg: error.message });
+  }
+};
+exports.getAllSalary = async (req, res) => {
+  try {
+    // console.log(userID);
     const salaries = await Salary.find();
+    console.log(salaries);
     res.json(salaries);
   } catch (error) {
     return res.status(500).json({ msg: error.message });
@@ -86,6 +99,7 @@ exports.getEmployeeSalary = async (req, res) => {
   try {
     // console.log("hit");
     const salaries = await Salary.find({ userID: req.user.id });
+    console.log(salaries);
     res.json(salaries);
   } catch (error) {
     return res.status(500).json({ msg: error.message });

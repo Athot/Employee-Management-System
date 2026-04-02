@@ -15,6 +15,8 @@ export const login = async (email, password) => {
     });
     if (res.data.msg == 1) {
       alert("Don't have account? Register First");
+    } else if (res.data.msg == 2) {
+      alert("Incorrect password");
     }
 
     localStorage.setItem("token", res.data.token);
@@ -276,10 +278,11 @@ export const getEmployeeSalary = async (token) => {
 
 // get all salary
 
-export const getAllSalary = async (token) => {
+export const getSalary = async (token, userID) => {
+  console.log(userID);
   try {
     const res = await axios.get(
-      `${SALARY_URL}/get-salary`,
+      `${SALARY_URL}/get-salary/${userID}`,
 
       {
         headers: {
@@ -287,7 +290,28 @@ export const getAllSalary = async (token) => {
         },
       },
     );
-    // console.log(res.data);
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    // console.log(error);
+  }
+};
+
+// get all salary by admin amd hr
+// get-all-salary
+
+export const getAllSalary = async (token) => {
+  try {
+    const res = await axios.get(
+      `${SALARY_URL}/get-all-salary`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    console.log(res.data);
     return res.data;
   } catch (error) {
     // console.log(error);

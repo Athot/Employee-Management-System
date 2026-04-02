@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import { generateSalarySlip, getAllSalary } from "../../api/api";
+import { generateSalarySlip, getAllSalary, getSalary } from "../../api/api";
 import { formatDate } from "../../utils/commonFunctions";
 
 const EmployeeSalary = () => {
   const [salary, setSalary] = useState([]);
+  const userID = localStorage.getItem("userID");
+  // console.log(userID);
   useEffect(() => {
     fetchSalary();
   }, []);
   const token = localStorage.getItem("token");
   const fetchSalary = async () => {
-    const data = await getAllSalary(token);
+    const data = await getSalary(token, userID);
     if (data) {
       setSalary(data);
       return;

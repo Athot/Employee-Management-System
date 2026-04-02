@@ -3,6 +3,7 @@ const {
   generateSalarySlip,
   getEmployeeSalary,
   getSalary,
+  getAllSalary,
 } = require("../controllers/salaryControllers");
 const auth = require("../middleware/authMiddleware");
 const role = require("../middleware/roleMiddleware");
@@ -16,6 +17,7 @@ router.get("/my-salary", auth, role("EMPLOYEE"), getEmployeeSalary);
 router.get("/slip/:id", auth, generateSalarySlip);
 
 // get all salary
-router.get("/get-salary", auth, getSalary);
-
+router.get("/get-salary/:id", auth, getSalary);
+// getAllSalary
+router.get("/get-all-salary", auth, role("ADMIN", "HR"), getAllSalary);
 module.exports = router;

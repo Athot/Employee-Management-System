@@ -57,7 +57,7 @@ export default function CreateSalary() {
           dispatch(fetchEmployees(token));
         }}
       >
-        {upload ? "- Cancel Salary" : "+ Add Salary"}
+        {upload ? "- Cancel" : "+ Add Salary"}
       </button>
 
       {!upload ? (
